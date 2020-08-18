@@ -159,6 +159,10 @@
                         url: '<?= base_url('Email/send') ?>',
                         type: 'POST',
                         data: $(this).serialize(),
+                        beforeSend: function()
+                        { 
+                            $("#btn-register").html('<span class="glyphicon glyphicon-transfer"></span>   sending ...');
+                        },
                         success:function(response) {
                             $('.message-box-success').addClass('open');
                             playAudio('alert');
