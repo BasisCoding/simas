@@ -36,10 +36,10 @@
 		    $password		= $this->input->post('password');
 		    $subjek = 'Pendaftaran';
 		    $pesan = 'Terima Kasih Sudah Mendaftar di Website Kami';
-
+		    $kode = $this->kode(10);
 		    $data = array(
 		    	'pesan' => $pesan,
-		    	'kode'	=> $this->kode(10),
+		    	'kode'	=> $kode,
 		    	'email'	=> $email_penerima,
 		    	'username'	=> $username,
 		    	'nama_lengkap' => $nama_lengkap,
@@ -47,11 +47,11 @@
 		    );
 
 		    $data_insert = array(
-		    	'kode_aktivasi'	=> $this->kode(10),
+		    	'kode_aktivasi'	=> $kode,
 		    	'email'	=> $email_penerima,
 		    	'username'	=> $username,
 		    	'nama_lengkap' => $nama_lengkap,
-		    	'password'	=> $password
+		    	'password'	=> hash('sha512', $this->input->post('password').config_item('encryption_key'))
 		    );
 
 		    $content = $this->load->view('message', $data, true); // Ambil isi file content.php dan masukan ke variabel $content

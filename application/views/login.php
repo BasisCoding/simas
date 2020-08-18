@@ -22,15 +22,15 @@
                 <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title text-center"><strong>Basis</strong>Coding</div>
-                    <form action="index.html" class="form-horizontal" method="post">
+                    <form class="form-horizontal" method="post" id="form-login">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Username"/>
+                                <input type="text" class="form-control" placeholder="Username" name="username" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="password" class="form-control" placeholder="Password"/>
+                                <input type="password" class="form-control" placeholder="Password" name="password" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,12 +76,15 @@
             </div>
         </div>
 
-        <div class="message-box message-box-error animated fadeIn" data-sound="fail" id="message-success">
+        <div class="message-box message-box-danger animated fadeIn" data-sound="fail" id="message-danger">
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-check"></span> GAGAL</div>
                     <div class="mb-content">
                         <p>Login Gagal, Silahkan coba kembali.</p>                    
+                    </div>
+                    <div class="mb-footer">
+                        <button class="btn btn-default btn-lg pull-right mb-control-close">Close</button>
                     </div>
                 </div>
             </div>
@@ -105,12 +108,18 @@
                 $('#form-login').on('submit', function() {
                     
                     $.ajax({
-                        url: '<?= base_url('Login/proses_login') ?>',
+                        url: '<?= site_url('Login/proses_login') ?>',
                         type: 'POST',
+                        dataType:'JSON',
                         data: $(this).serialize(),
                         success:function(response) {
-                            $('.message-box-success').addClass('open');
-                            playAudio('alert');
+                            if (response.status == 'success') {
+                                $('.message-box-success').addClass('open');
+                                playAudio('alert');
+                            }else{
+                                $('.message-box-danger').addClass('open');
+                                playAudio('fail');
+                            }
                             setTimeout(function(){ 
                               window.location.href = response.redirect;
                             }, 1500);
