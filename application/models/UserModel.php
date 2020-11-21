@@ -12,7 +12,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('users');
-			$this->db->join('users_group', 'users_group.level = users.id_level', 'left');
+			$this->db->join('users_group', 'users_group.level = users.level', 'left');
 			$this->db->where('users.username', $username);
 			$this->db->where('users.password', $password);
 			$this->db->where('users.status', 1);

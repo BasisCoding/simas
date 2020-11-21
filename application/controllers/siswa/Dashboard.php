@@ -6,7 +6,7 @@
 		public function __construct()
 		{
 			parent::__construct();
-			if ($this->session->userdata('status') != 'login' OR $this->session->userdata('level') != 1) {
+			if ($this->session->userdata('status') != 'login' OR $this->session->userdata('level') != 2) {
 				redirect(base_url('Login'));
 			}
 		}

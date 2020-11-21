@@ -7,7 +7,7 @@
         protected $_ci;
         protected $email_pengirim = 'basiscoding20@gmail.com'; // Isikan dengan email pengirim
         protected $nama_pengirim = 'BasisCoding'; // Isikan dengan nama pengirim
-        protected $password = 'jfhgwxuwevuwaejg'; // Isikan dengan password email pengirim
+        protected $password = 'kemgjfawwpovmpef'; // Isikan dengan password email pengirim
 
         public function __construct(){
             $this->_ci = &get_instance(); // Set variabel _ci dengan Fungsi2-fungsi dari Codeigniter

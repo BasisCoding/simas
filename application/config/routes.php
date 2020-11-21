@@ -54,3 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = 'admin/Dashboard';
+$route['siswa'] = 'siswa/Dashboard';
+$route['datapribadi'] = 'siswa/master/datapribadi';
+$route['dataorangtua'] = 'siswa/master/dataorangtua';
+$route['datapenilaian'] = 'siswa/master/datapenilaian';

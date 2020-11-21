@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="<?= base_url('assets/img/logo2.png') ?>" type="image/x-icon" />
         <!-- END META SECTION -->
         
         <!-- CSS INCLUDE -->        
@@ -43,14 +43,14 @@
                                 <a href="<?= site_url('register') ?>" class="btn btn-warning btn-block">Register</a>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn btn-info btn-block">Log In</button>
+                                <button class="btn btn-info btn-block" id="btn-login">Log In</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="login-footer">
                     <div class="pull-left">
-                        &copy; 2014 AppName
+                        &copy; 2020 BasisCoding
                     </div>
                     <div class="pull-right">
                         <a href="#">About</a> |
@@ -94,17 +94,17 @@
         <audio id="audio-alert" src="<?= base_url('assets/audio/alert.mp3')?>" preload="auto"></audio>
         <audio id="audio-fail" src="<?= base_url('assets/audio/fail.mp3')?>" preload="auto"></audio>
         <!-- END PRELOADS -->   
-        </div>
+
         <!-- START PLUGINS -->
         <script type="text/javascript" src="<?= base_url('assets/js/plugins/jquery/jquery.min.js')?>"></script>
         <script type="text/javascript" src="<?= base_url('assets/js/plugins/jquery/jquery-ui.min.js')?>"></script>
         <script type="text/javascript" src="<?= base_url('assets/js/plugins/bootstrap/bootstrap.min.js')?>"></script>
+        
         <script type="text/javascript" src="<?= base_url('assets/js/plugins.js') ?>"></script>
         <script type="text/javascript" src="<?= base_url('assets/js/actions.js') ?>"></script>
         <!-- END PLUGINS -->
         <script type="text/javascript">
-            $(function() {
-                
+            $(function() {     
                 $('#form-login').on('submit', function() {
                     
                     $.ajax({
@@ -112,6 +112,11 @@
                         type: 'POST',
                         dataType:'JSON',
                         data: $(this).serialize(),
+                        beforeSend: function()
+                        { 
+                            $("#btn-login").attr('disabled', '');
+                            $("#btn-login").html('<span class="glyphicon glyphicon-transfer"></span>   Sending ...');
+                        },
                         success:function(response) {
                             if (response.status == 'success') {
                                 $('.message-box-success').addClass('open');

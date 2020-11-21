@@ -32,7 +32,7 @@
 			$this->load->library('Mailer');
 		    $email_penerima = $this->input->post('email');
 		    $username		= $this->input->post('username');
-		    $nama_lengkap	= $this->input->post('nama_lengkap');
+		    $nama_user		= $this->input->post('nama_lengkap');
 		    $password		= $this->input->post('password');
 		    $subjek = 'Pendaftaran';
 		    $pesan = 'Terima Kasih Sudah Mendaftar di Website Kami';
@@ -42,7 +42,7 @@
 		    	'kode'	=> $kode,
 		    	'email'	=> $email_penerima,
 		    	'username'	=> $username,
-		    	'nama_lengkap' => $nama_lengkap,
+		    	'nama_user' => $nama_user,
 		    	'password'	=> $password
 		    );
 
@@ -50,7 +50,7 @@
 		    	'kode_aktivasi'	=> $kode,
 		    	'email'	=> $email_penerima,
 		    	'username'	=> $username,
-		    	'nama_lengkap' => $nama_lengkap,
+		    	'nama_user' => $nama_user,
 		    	'password'	=> hash('sha512', $this->input->post('password').config_item('encryption_key'))
 		    );
 
@@ -82,7 +82,7 @@
 			$validasi = $this->db->get_where('users', array('kode_aktivasi' => $kode));
 			if ($validasi->num_rows() > 0) {
 				$response = array('status' => 'Berhasil Validasi, Anda akan dialihkan ke halaman Login');
-				$update_status = $this->db->update('users', array('status'=>1) ,array('kode_aktivasi' => $kode));
+				$update_status = $this->db->update('users', array('status'=>1, 'level'=>2) ,array('kode_aktivasi' => $kode));
 				$this->load->view('validasi', $response);
 			}else{
 				$response = array('status' => 'Gagal Validasi, Silahkan Coba Daftar kembali');

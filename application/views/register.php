@@ -2,12 +2,12 @@
 <html lang="en" class="body-full-height">
     <head>        
         <!-- META SECTION -->
-        <title>Joli Admin - Responsive Bootstrap Admin Template</title>            
+        <title>Register | Sistem Informasi Manajemen Sekolah</title>            
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="<?= base_url('assets/img/logo2.png') ?>" type="image/x-icon" />
         <!-- END META SECTION -->
         
         <!-- CSS INCLUDE -->        
@@ -58,6 +58,9 @@
                         <div class="form-group">
                             <div class="col-md-6 text-right">
                                 <button class="btn btn-info btn-block" type="submit" id="btn-register">Register</button>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <a class="" href="<?= base_url('login') ?>">Sudah Punya Akun ?</a>
                             </div>
                         </div>
                     </form>
